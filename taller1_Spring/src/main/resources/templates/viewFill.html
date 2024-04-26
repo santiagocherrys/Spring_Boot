@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <title>Rellenar Tarea</title>
+</head>
+<body>
+
+<h1 class="text-center fw-bold my-5">Formulario</h1>
+
+<div class="container d-flex justify-content-center">
+    <form
+            th:object="${tarea}"
+            th:action="${action}"
+            method="post"
+            class="w-50 bg-light rounded-3 p-5"
+    >
+        <div class="form-floating mb-3">
+            <input
+                    type="text"
+                    class="form-control"
+                    id="titulo"
+                    th:field="*{titulo}"
+                    placeholder="Titulo tarea"
+                    th:value="${tarea.titulo}"
+            />
+            <label for="titulo">Titulo Tarea</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input
+                    type="text"
+                    minlength="0"
+                    th:field="*{descripcion}"
+                    class="form-control"
+                    id="descripcion"
+                    placeholder="Escriba su tarea"
+                    th:value="${tarea.descripcion}"
+            />
+            <label for="descripcion">Descripcion tarea</label>
+        </div>
+
+        <div class="form-floating mb-3">
+
+            <select th:field="*{estado}">
+                <option th:value="'Pendiente'" th:text="Pendiente"></option>
+                <option th:value="'Completada'" th:text="Completada"></option>
+                <option th:value="'Cancelada'" th:text="Cancelada"></option>
+            </select>
+        </div>
+
+
+        <!-- Se pone los campos de fecha y hora escondidos -->
+        <div style="display: none">
+            <input
+                    type="text"
+                    minlength="0"
+                    th:field="*{fechaCreacion}"
+                    class="form-control"
+                    id="fechaCreacion"
+                    placeholder=""
+                    th:value="${tarea.fechaCreacion}"
+            />
+            <input
+                    type="text"
+                    minlength="0"
+                    th:field="*{horaCreacion}"
+                    class="form-control"
+                    id="horaCreacion"
+                    placeholder=""
+                    th:value="${tarea.horaCreacion}"
+            />
+        </div>
+
+
+
+        <div class="d-flex gap-3">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+            <a href="/" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+
+</div>
+
+</body>
+</html>
